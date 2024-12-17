@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block title %} Lost and Found {% endblock %}
+
+{% block body %}
+<h1> Welcome to the Lost and Found Portal! </h1>
+
+<p>
+    Have you lost something? Or found an item? Let us help you connect with the rightful owners.
+</p>
+
+<h3> Categories of Items: </h3>
+<ul>
+    {% for item in hobbies %}
+        <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+
+<!-- Form to Report a Lost or Found Item -->
+<h3> Report an Item </h3>
+<form method="POST" action="/report">
+    <label for="item_name">Item Name:</label>
+    <input type="text" id="item_name" name="item_name" placeholder="Enter the item name" required><br><br>
+    
+    <label for="item_type">Type of Item:</label>
+    <select id="item_type" name="item_type" required>
+        <option value="lost">Lost</option>
+        <option value="found">Found</option>
+    </select><br><br>
+    
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description" rows="4" cols="50" placeholder="Describe the item..." required></textarea><br><br>
+    
+    <label for="contact">Your Contact:</label>
+    <input type="text" id="contact" name="contact" placeholder="Phone/Email" required><br><br>
+    
+    <button type="submit">Submit</button>
+</form>
+
+<!-- Image Section -->
+<h3> Example of a Found Item: </h3>
+<img src="{{ url_for('static', filename='images/found_item.png') }}" alt="Found Item Example" />
+
+{% endblock %}
